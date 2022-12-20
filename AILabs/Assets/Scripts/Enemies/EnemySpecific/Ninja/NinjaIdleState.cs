@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrogloditIdleState : IdleState
+public class NinjaIdleState : IdleState
 {
-    private Troglodit _troglodit;
+    private Ninja _ninja;
 
-    public TrogloditIdleState(Entity entity, FiniteStateMachine stateMachine, string animationName, IdleStateData stateData, Troglodit troglodit) : base(entity, stateMachine, animationName, stateData)
+    public NinjaIdleState(Entity entity, FiniteStateMachine stateMachine, string animationName, IdleStateData stateData, Ninja ninja) : base(entity, stateMachine, animationName, stateData)
     {
-        _troglodit = troglodit;
+        _ninja = ninja;
     }
 
     public override void Enter()
@@ -27,10 +27,10 @@ public class TrogloditIdleState : IdleState
 
         if (isPlayerInMinAgroRange)
         {
-            stateMachine.ChangeState(_troglodit.PlayerDetectedState);
+            stateMachine.ChangeState(_ninja.PlayerDetectedState);
         }
         else if (isIdleTimeOver)
-            stateMachine.ChangeState(_troglodit.MoveState);
+            stateMachine.ChangeState(_ninja.MoveState);
     }
 
     public override void PhysicsUpdate()

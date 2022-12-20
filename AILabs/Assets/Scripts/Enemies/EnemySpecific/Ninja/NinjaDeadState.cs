@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrogloditDeadState : DeadState
+public class NinjaDeadState : DeadState
 {
-    private Troglodit _troglodit;
+    private Ninja _ninja;
 
-    public TrogloditDeadState(Entity entity, FiniteStateMachine stateMachine, string animationName, DeadStateData stateData, Troglodit troglodit) : base(entity, stateMachine, animationName, stateData)
+    public NinjaDeadState(Entity entity, FiniteStateMachine stateMachine, string animationName, DeadStateData stateData, Ninja ninja) : base(entity, stateMachine, animationName, stateData)
     {
-        _troglodit = troglodit;
+        _ninja = ninja;
     }
 
     public override void DoChecks()

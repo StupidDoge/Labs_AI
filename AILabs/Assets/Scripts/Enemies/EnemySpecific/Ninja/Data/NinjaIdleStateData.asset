@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f233abeaca8ecbd418702e79b97c637b, type: 3}
-  m_Name: TrogloditChargeStateData
+  m_Script: {fileID: 11500000, guid: 46cc96f6ff9b38a499fce20aae31ed0b, type: 3}
+  m_Name: NinjaIdleStateData
   m_EditorClassIdentifier: 
-  ChargeSpeed: 6
-  ChargeTime: 2
+  MinIdleTime: 1
+  MaxIdleTime: 2

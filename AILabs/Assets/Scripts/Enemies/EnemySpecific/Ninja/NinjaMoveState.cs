@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrogloditMoveState : MoveState
+public class NinjaMoveState : MoveState
 {
-    private Troglodit _troglodit;
+    private Ninja _ninja;
 
-    public TrogloditMoveState(Entity entity, FiniteStateMachine stateMachine, string animationName, MoveStateData stateData, Troglodit troglodit) : base(entity, stateMachine, animationName, stateData)
+    public NinjaMoveState(Entity entity, FiniteStateMachine stateMachine, string animationName, MoveStateData stateData, Ninja ninja) : base(entity, stateMachine, animationName, stateData)
     {
-        _troglodit = troglodit;
+        _ninja = ninja;
     }
 
     public override void Enter()
@@ -27,12 +27,12 @@ public class TrogloditMoveState : MoveState
 
         if (isPlayerInMinAgroRange)
         {
-            stateMachine.ChangeState(_troglodit.PlayerDetectedState);
+            stateMachine.ChangeState(_ninja.PlayerDetectedState);
         }
         else if (isDetectingWall || !isDetectingLedge)
         {
-            _troglodit.IdleState.SetFlipAfterIdle(true);
-            stateMachine.ChangeState(_troglodit.IdleState);
+            _ninja.IdleState.SetFlipAfterIdle(true);
+            stateMachine.ChangeState(_ninja.IdleState);
         }
     }
 

@@ -9,18 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfe4fd4f445699a48a187f7b77ff6d32, type: 3}
-  m_Name: TrogloditBaseData
+  m_Script: {fileID: 11500000, guid: 9b911acb3e7fa874fa793be33d9176fd, type: 3}
+  m_Name: NinjaMeleeAttackStateData
   m_EditorClassIdentifier: 
-  MaxHealth: 6
-  WallCheckDistance: 0.4
-  LedgeCheckDistance: 0.5
-  MinAgroDistance: 10
-  MaxAgroDistance: 12
-  CloseRangeActionDistance: 1.33
-  GroundLayer:
-    serializedVersion: 2
-    m_Bits: 8
+  AttackRadius: 0.7
+  Damage: 10
   PlayerLayer:
     serializedVersion: 2
     m_Bits: 256

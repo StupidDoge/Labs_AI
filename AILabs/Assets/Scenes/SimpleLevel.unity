@@ -487,7 +487,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1359704029580439019, guid: e85f1ea7b7063464fb14d56d52097748, type: 3}
       propertyPath: m_Name
-      value: Troglodit
+      value: Ninja
       objectReference: {fileID: 0}
     - target: {fileID: 1359704029580439021, guid: e85f1ea7b7063464fb14d56d52097748, type: 3}
       propertyPath: m_RootOrder

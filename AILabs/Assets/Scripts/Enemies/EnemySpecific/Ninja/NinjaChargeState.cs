@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrogloditChargeState : ChargeState
+public class NinjaChargeState : ChargeState
 {
-    private Troglodit _troglodit;
+    private Ninja _ninja;
 
-    public TrogloditChargeState(Entity entity, FiniteStateMachine stateMachine, string animationName, ChargeStateData stateData, Troglodit troglodit) : base(entity, stateMachine, animationName, stateData)
+    public NinjaChargeState(Entity entity, FiniteStateMachine stateMachine, string animationName, ChargeStateData stateData, Ninja ninja) : base(entity, stateMachine, animationName, stateData)
     {
-        _troglodit = troglodit;
+        _ninja = ninja;
     }
 
     public override void DoChecks()
@@ -31,17 +31,17 @@ public class TrogloditChargeState : ChargeState
         base.LogicUpdate();
 
         if (performCloseRangeAction)
-            stateMachine.ChangeState(_troglodit.MeleeAttackState);
+            stateMachine.ChangeState(_ninja.MeleeAttackState);
         else if (!isDetectingLedge || isDetectingWall)
         {
-            stateMachine.ChangeState(_troglodit.LookForPlayerState);
+            stateMachine.ChangeState(_ninja.LookForPlayerState);
         }
         else if (isChargeTimeOver)
         {
             if (isPlayerInMinAgroRange)
-                stateMachine.ChangeState(_troglodit.PlayerDetectedState);
+                stateMachine.ChangeState(_ninja.PlayerDetectedState);
             else
-                stateMachine.ChangeState(_troglodit.LookForPlayerState);
+                stateMachine.ChangeState(_ninja.LookForPlayerState);
         }
     }
 

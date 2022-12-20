@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrogloditMeleeAttackState : MeleeAttackState
+public class NinjaMeleeAttackState : MeleeAttackState
 {
-    private Troglodit _troglodit;
+    private Ninja _ninja;
 
-    public TrogloditMeleeAttackState(Entity entity, FiniteStateMachine stateMachine, string animationName, Transform attackPosition, MeleeAttackStateData stateData, Troglodit troglodit) : base(entity, stateMachine, animationName, attackPosition, stateData)
+    public NinjaMeleeAttackState(Entity entity, FiniteStateMachine stateMachine, string animationName, Transform attackPosition, MeleeAttackStateData stateData, Ninja ninja) : base(entity, stateMachine, animationName, attackPosition, stateData)
     {
-        _troglodit = troglodit;
+        _ninja = ninja;
     }
 
     public override void DoChecks()
@@ -38,9 +38,9 @@ public class TrogloditMeleeAttackState : MeleeAttackState
         if (isAnimationFinished)
         {
             if (isPlayerInMinAgroRange)
-                stateMachine.ChangeState(_troglodit.PlayerDetectedState);
+                stateMachine.ChangeState(_ninja.PlayerDetectedState);
             else
-                stateMachine.ChangeState(_troglodit.LookForPlayerState);
+                stateMachine.ChangeState(_ninja.LookForPlayerState);
         }
     }
 

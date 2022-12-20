@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 1359704029580439021}
   - component: {fileID: 1359704029580439023}
   - component: {fileID: 1359704029580439020}
-  - component: {fileID: 1359704029580439022}
+  - component: {fileID: 1452070216}
   m_Layer: 6
   m_Name: Ninja
   m_TagString: Untagged
@@ -297,7 +297,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &1359704029580439022
+--- !u!114 &1452070216
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -306,14 +306,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1359704029580439019}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1765d29f1ff33ab4c95cdbcaf604ce9f, type: 3}
+  m_Script: {fileID: 11500000, guid: a75f0f9e674ffd047a855fb422b500a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: 8b331f7ee503245499df5777e43bdc54, type: 2}
   _wallCheck: {fileID: 1359704029004723085}
   _ledgeCheck: {fileID: 1359704028829446355}
   _playerCheck: {fileID: 1359704028786889793}
-  _boxCastSize: {x: 1, y: 3.5}
+  _boxCastSize: {x: 3, y: 3}
   _moveStateData: {fileID: 11400000, guid: a5f90936ef292894091806e8ba897be0, type: 2}
   _idleStateData: {fileID: 11400000, guid: 99faa7f7790ac5e458778bc2dde41229, type: 2}
   _playerDetectedStateData: {fileID: 11400000, guid: 0e0ca1894f2349948a449416eb9a07b3, type: 2}

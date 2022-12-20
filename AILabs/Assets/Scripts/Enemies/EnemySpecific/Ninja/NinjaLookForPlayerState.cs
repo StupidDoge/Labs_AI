@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrogloditLookForPlayerState : LookForPlayerState
+public class NinjaLookForPlayerState : LookForPlayerState
 {
-    private Troglodit _troglodit;
+    private Ninja _ninja;
 
-    public TrogloditLookForPlayerState(Entity entity, FiniteStateMachine stateMachine, string animationName, LookForPlayerStateData stateData, Troglodit troglodit) : base(entity, stateMachine, animationName, stateData)
+    public NinjaLookForPlayerState(Entity entity, FiniteStateMachine stateMachine, string animationName, LookForPlayerStateData stateData, Ninja ninja) : base(entity, stateMachine, animationName, stateData)
     {
-        _troglodit = troglodit;
+        _ninja = ninja;
     }
 
     public override void DoChecks()
@@ -31,9 +31,9 @@ public class TrogloditLookForPlayerState : LookForPlayerState
         base.LogicUpdate();
 
         if (isPlayerInMinAgroRange)
-            stateMachine.ChangeState(_troglodit.PlayerDetectedState);
+            stateMachine.ChangeState(_ninja.PlayerDetectedState);
         else if (isAllTurnsTimeDone)
-            stateMachine.ChangeState(_troglodit.MoveState);
+            stateMachine.ChangeState(_ninja.MoveState);
     }
 
     public override void PhysicsUpdate()
