@@ -78,7 +78,6 @@ public class NPC_Entity : MonoBehaviour
     {
         if (CanStartDialogue && !DialogueStarted)
         {
-            Debug.Log(isStarted);
             DialogueStarted = true;
         }
     }

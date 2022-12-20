@@ -15,6 +15,8 @@ public class Monk : NPC_Entity
     [SerializeField] private NPCIdleStateData _idleStateData;
     [SerializeField] private NPCDialogueStateData _dialogueStateData;
 
+    private TextAsset _currentTextAsset;
+
     public override void Start()
     {
         base.Start();
@@ -23,11 +25,31 @@ public class Monk : NPC_Entity
         IdleState = new MonkIdleState(this, StateMachine, "idle", _idleStateData, this);
         DialogueState = new MonkDialogueState(this, StateMachine, "idle", _dialogueStateData, this);
 
+        _currentTextAsset = _dialogueStateData.StartDialogue;
+
         StateMachine.Init(MoveState);
+    }
+
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        LevelManager.OnAllNinjasDefeated += ChangeDialogue;
+    }
+
+    public override void OnDisable()
+    {
+        base.OnDisable();
+        LevelManager.OnAllNinjasDefeated -= ChangeDialogue;
+    }
+
+    private void ChangeDialogue()
+    {
+        _currentTextAsset = _dialogueStateData.EndDialogue;
+        Debug.Log("change");
     }
 
     public void StartDialogue()
     {
-        OnDialogueStarted?.Invoke(_dialogueStateData.StartDialogue);
+        OnDialogueStarted?.Invoke(_currentTextAsset);
     }
 }

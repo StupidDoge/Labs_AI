@@ -134,7 +134,6 @@ public class Player : MonoBehaviour
     {
         if (CanStartDialogue && !DialogueStarted)
         {
-            Debug.Log("true");
             DialogueStarted = true;
         }
     }

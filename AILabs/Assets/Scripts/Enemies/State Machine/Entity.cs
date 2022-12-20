@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Entity : MonoBehaviour, IDamageable
 {
+    public static Action OnEnemyDie;
+
     public FiniteStateMachine StateMachine { get; private set; }
     public EntityData Data;
 
@@ -91,6 +94,7 @@ public class Entity : MonoBehaviour, IDamageable
         if (_currentHealth <= 0)
         {
             IsDead = true;
+            OnEnemyDie?.Invoke();
         }
     }
 
