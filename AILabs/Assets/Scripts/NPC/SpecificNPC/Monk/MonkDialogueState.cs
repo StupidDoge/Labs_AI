@@ -19,6 +19,8 @@ public class MonkDialogueState : NPCDialogueState
     public override void Enter()
     {
         base.Enter();
+        _monk.SetVelocity(0f);
+        Debug.Log("Monk In Dialogue");
     }
 
     public override void Exit()

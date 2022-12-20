@@ -11,6 +11,7 @@ public class PlayerGroundedState : PlayerState
     private bool _interactionInput;
     private bool _isGrounded;
     private bool _isTouchingWall;
+    private bool _dialogueIsStarted;
 
     public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationName) : base(player, stateMachine, playerData, animationName)
     {
@@ -22,6 +23,7 @@ public class PlayerGroundedState : PlayerState
 
         _isGrounded = player.CheckIfGrounded();
         _isTouchingWall = player.CheckIfTouchingWall();
+        _dialogueIsStarted = player.DialogueStarted;
     }
 
     public override void Enter()
@@ -45,15 +47,15 @@ public class PlayerGroundedState : PlayerState
         _grabInput = player.InputHandler.GrabInput;
         _interactionInput = player.InputHandler.InteractionInput;
         
-        if (player.InputHandler.AttackInputs[(int)CombatInputs.primary] && xInput == 0)
+        if (player.InputHandler.AttackInputs[(int)CombatInputs.primary] && xInput == 0 && !_dialogueIsStarted)
         {
             stateMachine.ChangeState(player.PrimaryAttackState);
         }
-        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondary])
+        else if (player.InputHandler.AttackInputs[(int)CombatInputs.secondary] && !_dialogueIsStarted)
         {
             stateMachine.ChangeState(player.SecondaryAttackState);
         }
-        else if (_jumpInput && player.JumpState.CanJump())
+        else if (_jumpInput && player.JumpState.CanJump() && !_dialogueIsStarted)
         {
             stateMachine.ChangeState(player.JumpState);
         }

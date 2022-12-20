@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
 
     public Vector2 CurrentVelocity { get; private set; }
     public int FacingDirection { get; private set; }
+    public bool DialogueStarted { get; private set; }
 
     private Vector2 _workspace;
 
@@ -75,11 +76,13 @@ public class Player : MonoBehaviour
     private void OnEnable()
     {
         DialogueManager.OnInputEnabled += SetInputEnabled;
+        PlayerDialogueState.OnDialogueStarted += SetIfIsDialogueStarted;
     }
 
     private void OnDisable()
     {
         DialogueManager.OnInputEnabled -= SetInputEnabled;
+        PlayerDialogueState.OnDialogueStarted -= SetIfIsDialogueStarted;
     }
 
     private void Update()
@@ -122,6 +125,11 @@ public class Player : MonoBehaviour
         _workspace.Set(angle.x * velocity * direction, angle.y * velocity);
         Rigidbody.velocity = _workspace;
         CurrentVelocity = _workspace;
+    }
+
+    public void SetIfIsDialogueStarted(bool isStarted)
+    {
+        DialogueStarted = true;
     }
 
     public bool CheckIfGrounded()

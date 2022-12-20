@@ -10,6 +10,7 @@ public class Monk : NPC_Entity
 
     [SerializeField] private NPCMoveStateData _moveStateData;
     [SerializeField] private NPCIdleStateData _idleStateData;
+    [SerializeField] private NPCDialogueStateData _dialogueStateData;
 
     public override void Start()
     {
@@ -17,6 +18,7 @@ public class Monk : NPC_Entity
 
         MoveState = new MonkMoveState(this, StateMachine, "move", _moveStateData, this);
         IdleState = new MonkIdleState(this, StateMachine, "idle", _idleStateData, this);
+        DialogueState = new MonkDialogueState(this, StateMachine, "idle", _dialogueStateData, this);
 
         StateMachine.Init(MoveState);
     }
