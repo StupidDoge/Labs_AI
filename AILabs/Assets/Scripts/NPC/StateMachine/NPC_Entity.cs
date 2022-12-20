@@ -20,6 +20,7 @@ public class NPC_Entity : MonoBehaviour
     [SerializeField] private Transform _wallCheck;
     [SerializeField] private Transform _ledgeCheck;
     [SerializeField] private Vector2 _boxCastSize;
+    [SerializeField] private BoxCollider2D _dialogueCollider;
 
     private Vector2 _velocityWorkspace;
 
@@ -38,11 +39,13 @@ public class NPC_Entity : MonoBehaviour
     public virtual void OnEnable()
     {
         PlayerDialogueState.OnDialogueStarted += CheckIfDialogueIsStarted;
+        DialogueManager.OnDialogueEnded += EndDialogue;
     }
 
     public virtual void OnDisable()
     {
         PlayerDialogueState.OnDialogueStarted -= CheckIfDialogueIsStarted;
+        DialogueManager.OnDialogueEnded -= EndDialogue;
     }
 
     public virtual void Update()
@@ -80,9 +83,26 @@ public class NPC_Entity : MonoBehaviour
         }
     }
 
+    public virtual void DisableDialogueCollider()
+    {
+        StartCoroutine(DisableDialogueColliderCoroutine());
+    }
+
+    private IEnumerator DisableDialogueColliderCoroutine()
+    {
+        _dialogueCollider.enabled = false;
+        yield return new WaitForSeconds(0.5f);
+        _dialogueCollider.enabled = true;
+    }
+
     public virtual void CheckIfPlayerInCollider(bool inCollider)
     {
         CanStartDialogue = inCollider;
+    }
+
+    public virtual void EndDialogue()
+    {
+        DialogueStarted = false;
     }
 
     public void SetZeroGravity()

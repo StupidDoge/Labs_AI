@@ -1,7 +1,7 @@
 -> main
 
 === main ===
-Вот и выход из пещеры, отлично!
+Nicely done, kunoichi!
 -> part1
 === part1 ===
-Но брата всё ещё нет... -> END
+Thank you. -> END

@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Monk : NPC_Entity
 {
+    public static Action<TextAsset> OnDialogueStarted;
+
     public MonkIdleState IdleState { get; private set; }
     public MonkMoveState MoveState { get; private set; }
     public MonkDialogueState DialogueState { get; private set; }
@@ -21,5 +24,10 @@ public class Monk : NPC_Entity
         DialogueState = new MonkDialogueState(this, StateMachine, "idle", _dialogueStateData, this);
 
         StateMachine.Init(MoveState);
+    }
+
+    public void StartDialogue()
+    {
+        OnDialogueStarted?.Invoke(_dialogueStateData.StartDialogue);
     }
 }

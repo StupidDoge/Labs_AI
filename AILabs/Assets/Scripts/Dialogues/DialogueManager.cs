@@ -6,6 +6,7 @@ using System;
 public class DialogueManager : MonoBehaviour
 {
     public static Action<bool> OnInputEnabled;
+    public static Action OnDialogueEnded;
 
     [SerializeField] private GameObject _dialoguePanel;
     [SerializeField] private TextMeshProUGUI _speech;
@@ -14,12 +15,12 @@ public class DialogueManager : MonoBehaviour
 
     private void OnEnable()
     {
-        DialogueCollider.OnDialogueEntered += StartDialogue;
+        Monk.OnDialogueStarted += StartDialogue;
     }
 
     private void OnDisable()
     {
-        DialogueCollider.OnDialogueEntered -= StartDialogue;
+        Monk.OnDialogueStarted -= StartDialogue;
     }
 
     private void StartDialogue(TextAsset jsonFile)
@@ -46,5 +47,6 @@ public class DialogueManager : MonoBehaviour
     {
         OnInputEnabled?.Invoke(true);
         _dialoguePanel.SetActive(false);
+        OnDialogueEnded?.Invoke();
     }
 }

@@ -59,7 +59,7 @@ public class PlayerGroundedState : PlayerState
         {
             stateMachine.ChangeState(player.JumpState);
         }
-        else if (_interactionInput)
+        else if (_interactionInput && player.CanStartDialogue)
         {
             stateMachine.ChangeState(player.DialogueState);
         }

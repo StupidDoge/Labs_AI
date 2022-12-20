@@ -1,7 +1,7 @@
 -> main
 
 === main ===
-Какая большая и тёмная пещера... 
+Hey, kunoichi!
 -> part1
 === part1 ===
-Надо срочно найти брата и убраться отсюда как можно скорее -> END
+I need you to defeat some ninjas over there! -> END

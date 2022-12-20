@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     public Vector2 CurrentVelocity { get; private set; }
     public int FacingDirection { get; private set; }
     public bool DialogueStarted { get; private set; }
+    public bool CanStartDialogue { get; private set; }
 
     private Vector2 _workspace;
 
@@ -77,12 +78,14 @@ public class Player : MonoBehaviour
     {
         DialogueManager.OnInputEnabled += SetInputEnabled;
         PlayerDialogueState.OnDialogueStarted += SetIfIsDialogueStarted;
+        DialogueManager.OnDialogueEnded += EndDialogue;
     }
 
     private void OnDisable()
     {
         DialogueManager.OnInputEnabled -= SetInputEnabled;
         PlayerDialogueState.OnDialogueStarted -= SetIfIsDialogueStarted;
+        DialogueManager.OnDialogueEnded += EndDialogue;
     }
 
     private void Update()
@@ -127,9 +130,18 @@ public class Player : MonoBehaviour
         CurrentVelocity = _workspace;
     }
 
-    public void SetIfIsDialogueStarted(bool isStarted)
+    private void SetIfIsDialogueStarted(bool isStarted)
     {
-        DialogueStarted = true;
+        if (CanStartDialogue && !DialogueStarted)
+        {
+            Debug.Log("true");
+            DialogueStarted = true;
+        }
+    }
+
+    private void EndDialogue()
+    {
+        DialogueStarted = false;
     }
 
     public bool CheckIfGrounded()
@@ -173,6 +185,18 @@ public class Player : MonoBehaviour
     private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
 
     private void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Dialogue"))
+            CanStartDialogue = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Dialogue"))
+            CanStartDialogue = false;
+    }
 
     private void Flip()
     {

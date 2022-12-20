@@ -7,6 +7,8 @@ public class PlayerDialogueState : PlayerGroundedState
 {
     public static Action<bool> OnDialogueStarted;
 
+    private bool _dialogueStarted;
+
     public PlayerDialogueState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationName) : base(player, stateMachine, playerData, animationName)
     {
     }
@@ -14,6 +16,7 @@ public class PlayerDialogueState : PlayerGroundedState
     public override void DoChecks()
     {
         base.DoChecks();
+        _dialogueStarted = player.DialogueStarted;
     }
 
     public override void Enter()
@@ -31,6 +34,9 @@ public class PlayerDialogueState : PlayerGroundedState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
+        if (!_dialogueStarted)
+            player.StateMachine.ChangeState(player.IdleState);
     }
 
     public override void PhysicsUpdate()
