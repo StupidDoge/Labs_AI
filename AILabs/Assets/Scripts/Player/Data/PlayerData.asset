@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   MovementVelocity: 12
-  JumpVelocity: 16
+  JumpVelocity: 25
   AmountOfJumps: 2
   wallJumpVelocity: 20
   wallJumpTime: 0.4
