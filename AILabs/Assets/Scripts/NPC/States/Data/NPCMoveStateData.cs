@@ -2,17 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCMoveStateData : MonoBehaviour
+[CreateAssetMenu(fileName = "NPCMoveStateData", menuName = "NPC Data/State Data/Move State")]
+public class NPCMoveStateData : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public float MovementSpeed = 2.5f;
 }

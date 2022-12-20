@@ -2,17 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCIdleStateData : MonoBehaviour
+[CreateAssetMenu(fileName = "NPCIdleStateData", menuName = "NPC Data/State Data/Idle State")]
+public class NPCIdleStateData : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public float MinIdleTime = 1f;
+    public float MaxIdleTime = 2f;
 }
