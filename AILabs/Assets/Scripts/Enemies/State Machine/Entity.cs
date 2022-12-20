@@ -12,7 +12,6 @@ public class Entity : MonoBehaviour, IDamageable
     public Animator EnemyAnimator { get; private set; }
     public GameObject AliveGameObject { get; private set; }
     public AnimationToStateMachine AnimToStateMachine { get; private set; }
-    public EnemySoundController SoundController { get; private set; }
 
     public int FacingDirection { get; private set; }
     public bool IsDead { get; private set; }
@@ -35,7 +34,6 @@ public class Entity : MonoBehaviour, IDamageable
         AliveGameObject = transform.Find("Alive").gameObject;
         EnemyRigidbody = GetComponent<Rigidbody2D>();
         EnemyBoxCollider = GetComponent<BoxCollider2D>();
-        SoundController = GetComponent<EnemySoundController>();
         EnemyAnimator = AliveGameObject.GetComponent<Animator>();
         AnimToStateMachine = AliveGameObject.GetComponent<AnimationToStateMachine>();
     }

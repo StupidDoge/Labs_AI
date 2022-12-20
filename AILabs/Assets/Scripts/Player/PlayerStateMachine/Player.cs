@@ -24,8 +24,6 @@ public class Player : MonoBehaviour
 
     public PlayerInventory Inventory { get; private set; }
 
-    public PlayerSoundController SoundController { get; private set; }
-
     public Animator PlayerAnimator { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
     public Rigidbody2D Rigidbody { get; private set; }
@@ -55,8 +53,6 @@ public class Player : MonoBehaviour
         LedgeClimbState = new PlayerLedgeClimbState(this, StateMachine, _playerData, "ledgeClimbState");
         PrimaryAttackState = new PlayerAttackState(this, StateMachine, _playerData, "attack");
         SecondaryAttackState = new PlayerAttackState(this, StateMachine, _playerData, "attack");
-
-        SoundController = GetComponent<PlayerSoundController>();
     }
 
     private void Start()

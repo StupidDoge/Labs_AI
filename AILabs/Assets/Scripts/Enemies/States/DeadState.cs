@@ -44,7 +44,7 @@ public class DeadState : State
 
     public virtual void DeathAction()
     {
-        entity.SoundController.PlayDeathSound();
+
     }
 
     public virtual void FinishDeath()
