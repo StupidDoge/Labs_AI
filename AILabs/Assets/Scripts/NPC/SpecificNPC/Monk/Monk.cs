@@ -19,4 +19,9 @@ public class Monk : NPC_Entity
 
         StateMachine.Init(MoveState);
     }
+
+    public void CheckIfPlayerInCollider(bool inCollider)
+    {
+        Debug.Log(inCollider);
+    }
 }
