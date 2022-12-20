@@ -8,6 +8,7 @@ public class PlayerGroundedState : PlayerState
 
     private bool _jumpInput;
     private bool _grabInput;
+    private bool _interactionInput;
     private bool _isGrounded;
     private bool _isTouchingWall;
 
@@ -42,6 +43,7 @@ public class PlayerGroundedState : PlayerState
         xInput = player.InputHandler.NormalizedInputX;
         _jumpInput = player.InputHandler.JumpInput;
         _grabInput = player.InputHandler.GrabInput;
+        _interactionInput = player.InputHandler.InteractionInput;
         
         if (player.InputHandler.AttackInputs[(int)CombatInputs.primary] && xInput == 0)
         {
@@ -54,6 +56,10 @@ public class PlayerGroundedState : PlayerState
         else if (_jumpInput && player.JumpState.CanJump())
         {
             stateMachine.ChangeState(player.JumpState);
+        }
+        else if (_interactionInput)
+        {
+            stateMachine.ChangeState(player.DialogueState);
         }
         else if (!_isGrounded)
         {

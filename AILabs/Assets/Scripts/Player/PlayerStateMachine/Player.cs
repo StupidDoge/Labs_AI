@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     public PlayerLedgeClimbState LedgeClimbState { get; private set; }
     public PlayerAttackState PrimaryAttackState { get; private set; }
     public PlayerAttackState SecondaryAttackState { get; private set; }
+    public PlayerDialogueState DialogueState { get; private set; }
 
     public PlayerInventory Inventory { get; private set; }
 
@@ -53,6 +54,7 @@ public class Player : MonoBehaviour
         LedgeClimbState = new PlayerLedgeClimbState(this, StateMachine, _playerData, "ledgeClimbState");
         PrimaryAttackState = new PlayerAttackState(this, StateMachine, _playerData, "attack");
         SecondaryAttackState = new PlayerAttackState(this, StateMachine, _playerData, "attack");
+        DialogueState = new PlayerDialogueState(this, StateMachine, _playerData, "idle");
     }
 
     private void Start()

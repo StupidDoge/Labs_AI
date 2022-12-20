@@ -6,6 +6,7 @@ public class Monk : NPC_Entity
 {
     public MonkIdleState IdleState { get; private set; }
     public MonkMoveState MoveState { get; private set; }
+    public MonkDialogueState DialogueState { get; private set; }
 
     [SerializeField] private NPCMoveStateData _moveStateData;
     [SerializeField] private NPCIdleStateData _idleStateData;
@@ -18,10 +19,5 @@ public class Monk : NPC_Entity
         IdleState = new MonkIdleState(this, StateMachine, "idle", _idleStateData, this);
 
         StateMachine.Init(MoveState);
-    }
-
-    public void CheckIfPlayerInCollider(bool inCollider)
-    {
-        Debug.Log(inCollider);
     }
 }

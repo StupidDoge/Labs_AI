@@ -2,17 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCDialogueState : MonoBehaviour
+public class NPCDialogueState : NPC_State
 {
-    // Start is called before the first frame update
-    void Start()
+    protected NPCDialogueStateData dialogueStateData;
+
+    public NPCDialogueState(NPC_Entity entity, NPC_StateMachine stateMachine, string animationName, NPCDialogueStateData dialogueStateData) : base(entity, stateMachine, animationName)
     {
-        
+        this.dialogueStateData = dialogueStateData;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void DoChecks()
     {
-        
+        base.DoChecks();
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+    }
+
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
     }
 }

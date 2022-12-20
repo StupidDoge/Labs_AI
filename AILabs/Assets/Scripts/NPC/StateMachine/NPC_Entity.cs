@@ -14,6 +14,8 @@ public class NPC_Entity : MonoBehaviour
     public AnimationToStateMachine AnimToStateMachine { get; private set; }
 
     public int FacingDirection { get; private set; }
+    public bool CanStartDialogue { get; private set; }
+    public bool DialogueStarted { get; private set; }
 
     [SerializeField] private Transform _wallCheck;
     [SerializeField] private Transform _ledgeCheck;
@@ -31,6 +33,16 @@ public class NPC_Entity : MonoBehaviour
         EnemyBoxCollider = GetComponent<BoxCollider2D>();
         NpcAnimator = AliveGameObject.GetComponent<Animator>();
         AnimToStateMachine = AliveGameObject.GetComponent<AnimationToStateMachine>();
+    }
+
+    public virtual void OnEnable()
+    {
+        PlayerDialogueState.OnDialogueStarted += CheckIfDialogueIsStarted;
+    }
+
+    public virtual void OnDisable()
+    {
+        PlayerDialogueState.OnDialogueStarted -= CheckIfDialogueIsStarted;
     }
 
     public virtual void Update()
@@ -57,6 +69,20 @@ public class NPC_Entity : MonoBehaviour
     public virtual bool CheckLedge()
     {
         return Physics2D.Raycast(_ledgeCheck.position, Vector2.down, Data.LedgeCheckDistance, Data.GroundLayer);
+    }
+
+    public virtual void CheckIfDialogueIsStarted(bool isStarted)
+    {
+        if (CanStartDialogue && !DialogueStarted)
+        {
+            Debug.Log(isStarted);
+            DialogueStarted = true;
+        }
+    }
+
+    public virtual void CheckIfPlayerInCollider(bool inCollider)
+    {
+        CanStartDialogue = inCollider;
     }
 
     public void SetZeroGravity()

@@ -1,14 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonkDialogueState : NPCDialogueState
+public class PlayerDialogueState : PlayerGroundedState
 {
-    private Monk _monk;
+    public static Action<bool> OnDialogueStarted;
 
-    public MonkDialogueState(NPC_Entity entity, NPC_StateMachine stateMachine, string animationName, NPCDialogueStateData dialogueStateData, Monk monk) : base(entity, stateMachine, animationName, dialogueStateData)
+    public PlayerDialogueState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationName) : base(player, stateMachine, playerData, animationName)
     {
-        _monk = monk;
     }
 
     public override void DoChecks()
@@ -19,11 +19,13 @@ public class MonkDialogueState : NPCDialogueState
     public override void Enter()
     {
         base.Enter();
+        OnDialogueStarted?.Invoke(true);
     }
 
     public override void Exit()
     {
         base.Exit();
+        OnDialogueStarted?.Invoke(false);
     }
 
     public override void LogicUpdate()
