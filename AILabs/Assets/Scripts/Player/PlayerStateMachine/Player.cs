@@ -14,11 +14,6 @@ public class Player : MonoBehaviour
     public PlayerJumpState JumpState { get; private set; }
     public PlayerInAirState InAirState { get; private set; }
     public PlayerLandState LandState { get; private set; }
-    public PlayerWallSlideState WallSlideState { get; private set; }
-    public PlayerWallGrabState WallGrabState { get; private set; }
-    public PlayerWallClimbState WallClimbState { get; private set; }
-    public PlayerWallJumpState WallJumpState { get; private set; }
-    public PlayerLedgeClimbState LedgeClimbState { get; private set; }
     public PlayerAttackState PrimaryAttackState { get; private set; }
     public PlayerAttackState SecondaryAttackState { get; private set; }
     public PlayerDialogueState DialogueState { get; private set; }
@@ -49,11 +44,6 @@ public class Player : MonoBehaviour
         JumpState = new PlayerJumpState(this, StateMachine, _playerData, "inAir");
         InAirState = new PlayerInAirState(this, StateMachine, _playerData, "inAir");
         LandState = new PlayerLandState(this, StateMachine, _playerData, "land");
-        WallSlideState = new PlayerWallSlideState(this, StateMachine, _playerData, "wallSlide");
-        WallGrabState = new PlayerWallGrabState(this, StateMachine, _playerData, "wallGrab");
-        WallClimbState = new PlayerWallClimbState(this, StateMachine, _playerData, "wallClimb");
-        WallJumpState = new PlayerWallJumpState(this, StateMachine, _playerData, "inAir");
-        LedgeClimbState = new PlayerLedgeClimbState(this, StateMachine, _playerData, "ledgeClimbState");
         PrimaryAttackState = new PlayerAttackState(this, StateMachine, _playerData, "attack");
         SecondaryAttackState = new PlayerAttackState(this, StateMachine, _playerData, "attack");
         DialogueState = new PlayerDialogueState(this, StateMachine, _playerData, "idle");
@@ -156,11 +146,6 @@ public class Player : MonoBehaviour
     public bool CheckIfTouchingWallBack()
     {
         return Physics2D.Raycast(_wallCheck.position, Vector2.right * -FacingDirection, _playerData.WallCheckDistance, _playerData.GroundLayer);
-    }
-
-    public bool CheckIfTouchingLedge()
-    {
-        return Physics2D.Raycast(_ledgeCheck.position, Vector2.right * FacingDirection, _playerData.WallCheckDistance, _playerData.GroundLayer);
     }
 
     public void CheckIfShouldFlip(int xInput)

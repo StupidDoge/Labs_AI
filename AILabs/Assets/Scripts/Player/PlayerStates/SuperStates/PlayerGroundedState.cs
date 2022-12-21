@@ -7,10 +7,8 @@ public class PlayerGroundedState : PlayerState
     protected int xInput;
 
     private bool _jumpInput;
-    private bool _grabInput;
     private bool _interactionInput;
     private bool _isGrounded;
-    private bool _isTouchingWall;
     private bool _dialogueIsStarted;
 
     public PlayerGroundedState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animationName) : base(player, stateMachine, playerData, animationName)
@@ -22,7 +20,6 @@ public class PlayerGroundedState : PlayerState
         base.DoChecks();
 
         _isGrounded = player.CheckIfGrounded();
-        _isTouchingWall = player.CheckIfTouchingWall();
         _dialogueIsStarted = player.DialogueStarted;
     }
 
@@ -44,7 +41,6 @@ public class PlayerGroundedState : PlayerState
 
         xInput = player.InputHandler.NormalizedInputX;
         _jumpInput = player.InputHandler.JumpInput;
-        _grabInput = player.InputHandler.GrabInput;
         _interactionInput = player.InputHandler.InteractionInput;
         
         if (player.InputHandler.AttackInputs[(int)CombatInputs.primary] && xInput == 0 && !_dialogueIsStarted)
@@ -68,8 +64,6 @@ public class PlayerGroundedState : PlayerState
             player.InAirState.StartCoyoteTime();
             stateMachine.ChangeState(player.InAirState);
         }
-        else if (_isTouchingWall && _grabInput)
-            stateMachine.ChangeState(player.WallGrabState);
     }
 
     public override void PhysicsUpdate()
