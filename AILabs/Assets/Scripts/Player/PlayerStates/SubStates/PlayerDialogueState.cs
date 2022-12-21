@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerDialogueState : PlayerGroundedState
 {
-    public static Action<bool> OnDialogueStarted;
+    public static Action OnDialogueStarted;
 
     private bool _dialogueStarted;
 
@@ -22,13 +22,12 @@ public class PlayerDialogueState : PlayerGroundedState
     public override void Enter()
     {
         base.Enter();
-        OnDialogueStarted?.Invoke(true);
+        OnDialogueStarted?.Invoke();
     }
 
     public override void Exit()
     {
         base.Exit();
-        OnDialogueStarted?.Invoke(false);
     }
 
     public override void LogicUpdate()

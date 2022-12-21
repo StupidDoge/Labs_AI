@@ -74,7 +74,7 @@ public class NPC_Entity : MonoBehaviour
         return Physics2D.Raycast(_ledgeCheck.position, Vector2.down, Data.LedgeCheckDistance, Data.GroundLayer);
     }
 
-    public virtual void CheckIfDialogueIsStarted(bool isStarted)
+    public virtual void CheckIfDialogueIsStarted()
     {
         if (CanStartDialogue && !DialogueStarted)
         {

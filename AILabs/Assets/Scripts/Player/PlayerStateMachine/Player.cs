@@ -130,7 +130,7 @@ public class Player : MonoBehaviour
         CurrentVelocity = _workspace;
     }
 
-    private void SetIfIsDialogueStarted(bool isStarted)
+    private void SetIfIsDialogueStarted()
     {
         if (CanStartDialogue && !DialogueStarted)
         {
